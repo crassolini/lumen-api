@@ -32,11 +32,13 @@ class AuthController extends Controller
         }
 
         // return $this->jsonResponse('bearer ' . $token);
+
         return response()->json([
             'access_token' => 'bearer ' . $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 1 // minutes
         ]);
+
     }
 
      /**
@@ -68,7 +70,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->jsonResponse(auth()->refresh());
+        return $this->jsonResponse('bearer ' . auth()->refresh());
     }
 
     /**
